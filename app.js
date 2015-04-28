@@ -10,6 +10,8 @@ var users = require('./routes/users');
 
 var app = express();
 
+var ingest = require('./ingest.js');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -56,5 +58,6 @@ app.use(function(err, req, res, next) {
   });
 });
 
+ingest();
 
 module.exports = app;
