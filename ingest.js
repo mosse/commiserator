@@ -1,4 +1,7 @@
 var Twitter = require('twitter');
+var Firebase = require('firebase');
+
+var myFirebaseRef = new Firebase("https://commiserator.firebaseio.com/");
  
 var client = new Twitter({
   consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -12,7 +15,7 @@ var params = {screen_name: 'markofmac'};
 var ingest = function(){
   client.get('statuses/user_timeline', params, function(error, tweets, response){
     if (!error) {
-      console.log(tweets);
+      myFirebaseRef.set(tweets);
     } 
 
     if (error) {
